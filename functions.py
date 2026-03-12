@@ -28,6 +28,20 @@ def sustainabilityMessage(year:deforestationYear)->str:
     else:
         return "Low deforestation level"
 
+def riskLevel(years: list[deforestationYear]) -> dict[int, str]:
+    levels: dict[int, str] = {}
+    for y in years:
+        if y.amz > 12000:
+            levels[y.year] = "SEVERE"
+        elif y.amz > 8000:
+            levels[y.year] = "HIGH"
+        elif y.amz > 4000:
+            levels[y.year] = "MODERATE"
+        else:
+            levels[y.year] = "LOW"
+
+    return levels
+
 
 def find_years_with_total_above(records: List["amazonFires"], threshold: int) -> List[int]:
     totals_by_year: dict[int, int] = {}
