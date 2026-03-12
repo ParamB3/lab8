@@ -1,3 +1,4 @@
+#Param Butani
 from functions import (
     totalDeforestation,
     isHighDeforestation,
@@ -5,7 +6,7 @@ from functions import (
     sustainabilityMessage,
     i_include_year
 )
-
+#Jorge Sanchez
 import data
 def percentChange(old: float, new: float) -> str:
     if old == 0:
@@ -25,8 +26,9 @@ def amzValue(year_obj):
 def dictValue(item):
     return item[1]
 
-
+#Both (We split it by sections)
 def generate_report(
+        #Jorge
     output_file: str = "deforestation_summary.txt",
     high_threshold: int = 10000
 ) -> None:
@@ -65,12 +67,12 @@ def generate_report(
         biggest_decrease = min(yoy_changes.items(), key=dictValue)
 
     with open(output_file, "w", encoding="utf-8") as f:
-
+#Param Butani
         f.write("1. DATASET OVERVIEW\n")
         f.write(f"Years Analyzed: {first_year.year} – {last_year.year}\n")
         f.write(f"Total Years in Dataset: {len(years)}\n")
         f.write(f"High Deforestation Threshold: {high_threshold:,} km²\n\n")
-
+#Param Butani
         f.write("2. SUMMARY STATISTICS\n")
         f.write(f"Highest Deforestation Year : {highest.year} ({highest.amz:,.0f} km²)\n")
         f.write(f"Lowest Deforestation Year  : {lowest.year} ({lowest.amz:,.0f} km²)\n")
@@ -87,7 +89,7 @@ def generate_report(
         if biggest_decrease:
             yr, val = biggest_decrease
             f.write(f"Largest Yearly Decrease    : {yr} ({val:+,.0f} km²)\n")
-
+#Jorge Sanchez
         f.write("\n3. YEAR-BY-YEAR ANALYSIS\n")
         f.write("-" * 60 + "\n")
 
@@ -118,10 +120,10 @@ def generate_report(
                 f.write("Change from Previous Year: N/A\n")
 
             f.write(f"Sustainability Insight: {sustainabilityMessage(year)}\n")
-
+#Jorge Sanchez
         f.write("\n4. OVERALL TREND COMPARISON\n")
         f.write(compareYears(last_year, first_year) + "\n")
-
+#Jorge Sanchez
         f.write("\n5. SOCIAL RESPONSIBILITY INTERPRETATION\n")
         f.write("-" * 80 + "\n")
         f.write(
@@ -132,7 +134,7 @@ def generate_report(
             "This problem can be greatly aided by identifying high-risk years."
             "This allows governments and organizations to implement environmental protections.\n"
         )
-
+#Param Butani
         f.write("\n6. RECOMMENDATIONS\n")
         f.write("-" * 80 + "\n")
         f.write("- Analyse external variables that impact High Risk or High Severity years\n")
