@@ -42,6 +42,40 @@ def riskLevel(years: list[deforestationYear]) -> dict[int, str]:
 
     return levels
 
+def getYear(obj: deforestationYear):
+        return obj.year
+
+def yearOverYearChange(years: list[deforestationYear],value: str = "amz") -> dict[int, float]:
+
+    sort = sorted(years, key=getYear)
+
+    changes: dict[int, float] = {}
+
+    for i in range(1, len(sor)):
+        previous = sort[i - 1]
+        current = sort[i]
+
+        prev = getattr(previous, value)
+        curr = getattr(current, value)
+
+        changes[current.year] = curr - prev
+
+    return changes
+
+def totalFiresByState(record: List[amazonFires]) -> dict[str, int]:
+
+    total: dict[str, int] = {}
+    for x in record:
+        if not x.state or x.firespots is None:
+            continue
+        try:
+            state = x.state.strip()
+            fires = int(x.firespots)
+        except (TypeError, ValueError):
+            continue
+        total[state] = total.get(state, 0) + fires
+
+    return total
 
 def find_years_with_total_above(records: List["amazonFires"], threshold: int) -> List[int]:
     totals_by_year: dict[int, int] = {}
