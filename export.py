@@ -1,10 +1,11 @@
-import data
 from functions import (
     totalDeforestation,
     isHighDeforestation,
     compareYears,
-    sustainabilityMessage
+    sustainabilityMessage,
+    i_include_year
 )
+import data
 def percentChange(old: float, new: float) -> str:
     if old == 0:
         return "N/A"
@@ -64,19 +65,12 @@ def generate_report(
 
     with open(output_file, "w", encoding="utf-8") as f:
 
-        f.write("\n")
-        f.write("=" * 80 + "\n")
-        f.write("AMAZON DEFORESTATION DATA ANALYSIS REPORT\n")
-        f.write("=" * 80 + "\n\n")
-
-        f.write("I. DATASET OVERVIEW\n")
-        f.write("-" * 80 + "\n")
+        f.write("1. DATASET OVERVIEW\n")
         f.write(f"Years Analyzed: {first_year.year} – {last_year.year}\n")
         f.write(f"Total Years in Dataset: {len(years)}\n")
         f.write(f"High Deforestation Threshold: {high_threshold:,} km²\n\n")
 
-        f.write("II. SUMMARY STATISTICS\n")
-        f.write("-" * 80 + "\n")
+        f.write("2. SUMMARY STATISTICS\n")
         f.write(f"Highest Deforestation Year : {highest.year} ({highest.amz:,.0f} km²)\n")
         f.write(f"Lowest Deforestation Year  : {lowest.year} ({lowest.amz:,.0f} km²)\n")
         f.write(f"Years Above Threshold      : {len(high_years)}\n")
@@ -93,8 +87,8 @@ def generate_report(
             yr, val = biggest_decrease
             f.write(f"Largest Yearly Decrease    : {yr} ({val:+,.0f} km²)\n")
 
-        f.write("\nIII. YEAR-BY-YEAR ANALYSIS\n")
-        f.write("-" * 80 + "\n")
+        f.write("\n3. YEAR-BY-YEAR ANALYSIS\n")
+        f.write("-" * 60 + "\n")
 
         for i in range(len(years)):
             year = years[i]
@@ -102,12 +96,18 @@ def generate_report(
             f.write(f"\nYear: {year.year}\n")
             f.write(f"Deforestation Total: {year.amz:,.0f} km²\n")
 
-            if isHighDeforestation(year, high_threshold):
-                status = "HIGH DEFORESTATION"
-            else:
-                status = "Below Critical Threshold"
+            climate_events = data.loadClimateEvents()
+            events_this_year = []
+            for ev in climate_events:
+                if i_include_year(ev, year.year):
+                    events_this_year.append(ev.event)
 
-            f.write(f"Status: {status}\n")
+            if events_this_year:
+                f.write("Climate Event: " + ", ".join(events_this_year) + "\n")
+            else:
+                f.write("Climate Event: None Recorded\n")
+                status = "HIGH DEFORESTATION" if isHighDeforestation(year, high_threshold) else "Below Critical Threshold"
+                f.write(f"Status: {status}\n")
 
             if i > 0:
                 previous = years[i - 1]
@@ -118,35 +118,26 @@ def generate_report(
 
             f.write(f"Sustainability Insight: {sustainabilityMessage(year)}\n")
 
-        f.write("\nIV. OVERALL TREND COMPARISON\n")
-        f.write("-" * 80 + "\n")
+        f.write("\n4. OVERALL TREND COMPARISON\n")
         f.write(compareYears(last_year, first_year) + "\n")
 
-        f.write("\nV. SOCIAL RESPONSIBILITY INTERPRETATION\n")
+        f.write("\n5. SOCIAL RESPONSIBILITY INTERPRETATION\n")
         f.write("-" * 80 + "\n")
         f.write(
-            "Deforestation significantly impacts biodiversity, carbon emissions, "
-            "indigenous communities, and long-term climate stability.\n"
+            "There are massive impacts of deforestation throughout the world."
+            "These include indigenous communities, biodiversity, carbon emissions and long-term climate stability in general.\n"
         )
         f.write(
-            "Identifying high-risk years allows governments and organizations "
-            "to intervene with stronger environmental protections.\n"
+            "This problem can be greatly aided by identifying high-risk years."
+            "This allows governments and organizations to implement environmental protections.\n"
         )
 
-        f.write("\nVI. RECOMMENDATIONS\n")
+        f.write("\n6. RECOMMENDATIONS\n")
         f.write("-" * 80 + "\n")
-        f.write("- Strengthen monitoring during high-risk years.\n")
+        f.write("- Analyse external variables that impact High Risk or High Severity years\n")
         f.write("- Support sustainable land-use policies.\n")
         f.write("- Increase transparency in supply chains.\n")
-        f.write("- Use data-driven decision making for conservation funding.\n")
-
-        f.write("\n")
-        f.write("=" * 80 + "\n")
-        f.write("END OF REPORT\n")
-        f.write("=" * 80 + "\n")
-
-    print(f"\nReport successfully written to '{output_file}'\n")
-
+        f.write("- Force mega corporations to take on policies for environmental safety\n")
 
 if __name__ == "__main__":
     generate_report()

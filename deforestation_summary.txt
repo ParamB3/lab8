@@ -1,0 +1,128 @@
+1. DATASET OVERVIEW
+Years Analyzed: 2004 – 2019
+Total Years in Dataset: 16
+High Deforestation Threshold: 10,000 km²
+
+2. SUMMARY STATISTICS
+Highest Deforestation Year : 2004 (27,772 km²)
+Lowest Deforestation Year  : 2012 (4,571 km²)
+Years Above Threshold      : 5
+Net Change (First → Last)  : -18,010 km²
+Percent Change             : -64.8%
+Largest Yearly Increase    : 2019 (+2,226 km²)
+Largest Yearly Decrease    : 2005 (-8,758 km²)
+
+3. YEAR-BY-YEAR ANALYSIS
+------------------------------------------------------------
+
+Year: 2004
+Deforestation Total: 27,772 km²
+Climate Event: El Nino
+Change from Previous Year: N/A
+Sustainability Insight: High deforestation year
+
+Year: 2005
+Deforestation Total: 19,014 km²
+Climate Event: El Nino, La Nina
+Change from 2004: -8,758 km²
+Sustainability Insight: High deforestation year
+
+Year: 2006
+Deforestation Total: 14,286 km²
+Climate Event: El Nino, La Nina
+Change from 2005: -4,728 km²
+Sustainability Insight: High deforestation year
+
+Year: 2007
+Deforestation Total: 11,651 km²
+Climate Event: El Nino, La Nina
+Change from 2006: -2,635 km²
+Sustainability Insight: High deforestation year
+
+Year: 2008
+Deforestation Total: 12,911 km²
+Climate Event: La Nina, La Nina
+Change from 2007: +1,260 km²
+Sustainability Insight: High deforestation year
+
+Year: 2009
+Deforestation Total: 7,464 km²
+Climate Event: El Nino, La Nina
+Change from 2008: -5,447 km²
+Sustainability Insight: Moderate deforestation level
+
+Year: 2010
+Deforestation Total: 7,000 km²
+Climate Event: El Nino, La Nina
+Change from 2009: -464 km²
+Sustainability Insight: Moderate deforestation level
+
+Year: 2011
+Deforestation Total: 6,418 km²
+Climate Event: La Nina, La Nina
+Change from 2010: -582 km²
+Sustainability Insight: Moderate deforestation level
+
+Year: 2012
+Deforestation Total: 4,571 km²
+Climate Event: La Nina
+Change from 2011: -1,847 km²
+Sustainability Insight: Low deforestation level
+
+Year: 2013
+Deforestation Total: 5,891 km²
+Climate Event: None Recorded
+Status: Below Critical Threshold
+Change from 2012: +1,320 km²
+Sustainability Insight: Moderate deforestation level
+
+Year: 2014
+Deforestation Total: 5,012 km²
+Climate Event: El Nino
+Change from 2013: -879 km²
+Sustainability Insight: Moderate deforestation level
+
+Year: 2015
+Deforestation Total: 6,207 km²
+Climate Event: El Nino, El Nino
+Change from 2014: +1,195 km²
+Sustainability Insight: Moderate deforestation level
+
+Year: 2016
+Deforestation Total: 7,893 km²
+Climate Event: El Nino, La Nina
+Change from 2015: +1,686 km²
+Sustainability Insight: Moderate deforestation level
+
+Year: 2017
+Deforestation Total: 6,947 km²
+Climate Event: La Nina, La Nina
+Change from 2016: -946 km²
+Sustainability Insight: Moderate deforestation level
+
+Year: 2018
+Deforestation Total: 7,536 km²
+Climate Event: El Nino, La Nina
+Change from 2017: +589 km²
+Sustainability Insight: Moderate deforestation level
+
+Year: 2019
+Deforestation Total: 9,762 km²
+Climate Event: El Nino
+Change from 2018: +2,226 km²
+Sustainability Insight: Moderate deforestation level
+
+4. OVERALL TREND COMPARISON
+Decrease of 18010.0 km^2
+
+5. SOCIAL RESPONSIBILITY INTERPRETATION
+--------------------------------------------------------------------------------
+There are massive impacts of deforestation throughout the world.These include indigenous communities, biodiversity, carbon emissions and long-term climate stability in general.
+This problem can be greatly aided by identifying high-risk years.This allows governments and organizations to implement environmental protections.
+
+6. RECOMMENDATIONS
+--------------------------------------------------------------------------------
+- Analyse external variables that impact High Risk or High Severity years
+- Support sustainable land-use policies.
+- Increase transparency in supply chains.
+- Force mega corporations to take on policies for enviromental saftey
