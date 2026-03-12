@@ -5,6 +5,7 @@ from functions import (
     sustainabilityMessage,
     i_include_year
 )
+
 import data
 def percentChange(old: float, new: float) -> str:
     if old == 0:
