@@ -1,7 +1,9 @@
 import unittest
 from classFile import deforestationYear
 from functions import (totalDeforestation, isHighDeforestation, compareYears,sustainabilityMessage)
-
+import functions
+from functions import *
+from classFile import *
 
 class TestDeforestationFunctions(unittest.TestCase):
 
@@ -155,6 +157,74 @@ class TestDeforestationFunctions(unittest.TestCase):
 
         self.assertEqual(result, expected)
 
+
+    def test_find_years_with_total_above_part_1(self):
+        records = [
+            amazonFires(2020, 1, "PA", -10.0, -60.0, 10),
+            amazonFires(2020, 2, "PA", -10.1, -60.1, 15),
+            amazonFires(2021, 1, "AM", -9.0, -59.0, 5),
+            amazonFires(2022, 1, "RO", -8.0, -58.0, 30),
+        ]
+        expected = [2020, 2022]  # 2020 total=25, 2022 total=30
+        actual = functions.find_years_with_total_above(records, 20)
+        self.assertEqual(expected, actual)
+
+    def test_find_years_with_total_above_part_2(self):
+        records = [
+            amazonFires(2019, 1, "PA", -10.0, -60.0, 5),
+            amazonFires(2019, 2, "PA", -10.1, -60.1, 4),
+            amazonFires(2020, 1, "AM", -9.0, -59.0, 3),
+        ]
+        # totals: 2019 = 9, 2020 = 3
+        expected = []
+        actual = functions.find_years_with_total_above(records, 10)
+        self.assertEqual(expected, actual)
+
+    def test_within_area_part_1(self):
+        records = [
+            amazonFires(2020, 1, "PA", -10.0, -60.0, 10),
+            amazonFires(2020, 1, "AM", -9.0,  -59.0, 5),
+            amazonFires(2020, 1, "RO", -10.0, -70.0, 1),   # outside longitude box
+            amazonFires(2020, 1, "PA", -10.5, -60.5, 2),   # duplicate state
+        ]
+        expected = ["AM", "PA"]
+        actual = functions.within_area(records, -61, -58, -11, -9)
+        self.assertEqual(expected, actual)
+
+    def test_within_area_part_2(self):
+        records = [
+            amazonFires(2020, 1, "PA", -10.0, -60.0, 10),
+            amazonFires(2020, 1, "AM", -9.0, -59.0, 5),
+            amazonFires(2020, 1, "RO", -8.0, -58.0, 3),
+        ]
+
+        # Bounds intentionally reversed
+        expected = ["AM", "PA", "RO"]
+        actual = functions.within_area(records, -58.0, -60.0, -8.0, -10.0)
+        self.assertEqual(expected, actual)
+
+    def test_i_include_year_part_1(self):
+        event = climateEvent(2000, 2005, "El Nino", 3)
+        self.assertTrue(functions.i_include_year(event, 2003))
+        self.assertTrue(functions.i_include_year(event, 2000))
+        self.assertTrue(functions.i_include_year(event, 2005))
+
+    def test_i_include_year_Part_2(self):
+        event = climateEvent(2000, 2005, "El Nino", 3)
+        self.assertFalse(functions.i_include_year(event, 1999))
+        self.assertFalse(functions.i_include_year(event, 2006))
+        self.assertFalse(functions.i_include_year(event, None))
+        self.assertFalse(functions.i_include_year(event, "bad"))
+
+    def test_duration_normal(self):
+        event = climateEvent(2000, 2005, "El Nino", 3)
+        self.assertEqual(6, functions.duration(event))
+        self.assertEqual(5, functions.duration(event, inclusive=False))
+
+    def test_duration_errors(self):
+        event = climateEvent(2010, 2000, "La Nina", 2)
+        with self.assertRaises(ValueError):
+            functions.duration(event)
 
 if __name__ == "__main__":
     unittest.main()
