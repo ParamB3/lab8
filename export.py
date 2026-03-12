@@ -139,6 +139,9 @@ def generate_report(
         f.write("- Support sustainable land-use policies.\n")
         f.write("- Increase transparency in supply chains.\n")
         f.write("- Force mega corporations to take on policies for environmental safety\n")
+        f.write("On conclusion, there are many aspects of deforestation that are ruining our land.\n")
+        f.write("In order to fix these, we have to implement the strategies that have were mentioned above.\n")
+
 
 if __name__ == "__main__":
     generate_report()
