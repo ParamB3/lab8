@@ -1,3 +1,4 @@
+#Param Butani
 class deforestationYear:
     def __init__(self, year, area, legalAmzTotal):
         self.year = year
@@ -13,7 +14,7 @@ class deforestationYear:
                 and self.year == other.year
                 and self.area == other.area
                 and self.amz == other.amz)
-
+#Param Butani
 class amazonFires:
     def __init__(self, year, month, state, latitude, longitude, firespots):
         self.year = year
@@ -36,7 +37,7 @@ class amazonFires:
                 and self.longitude == other.longitude
                 and self.firespots == other.firespots
         )
-
+#Jorge Sanchez
 class climateEvent:
     def __init__(self, start,end, event, severity):
         self.start = start

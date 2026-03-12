@@ -2,7 +2,7 @@ import csv
 import zipfile
 from classFile import deforestationYear, amazonFires, climateEvent
 
-
+#This is credited to ChatGpt
 def _open_csv_from_zip(zip_path, member_name):
 
     #Returns (zipfile_handle, csv_dict_reader)
@@ -14,7 +14,7 @@ def _open_csv_from_zip(zip_path, member_name):
     reader = csv.DictReader(text_lines)
     return zf, reader
 
-
+#This is credited to ChatGpt
 def load_deforestation_years(zip_path="archive.zip"):
     """
     Reads: def_area_2004_2019.csv
@@ -47,7 +47,7 @@ def load_deforestation_years(zip_path="archive.zip"):
     finally:
         zf.close()
 
-
+#This is credited to ChatGpt
 def load_fire_records(zip_path="archive.zip"):
     """
     Reads: inpe_brazilian_amazon_fires_1999_2019.csv
@@ -75,23 +75,17 @@ def load_fire_records(zip_path="archive.zip"):
     finally:
         zf.close()
 
-
-def load_climate_events(zip_path="archive.zip"):
-    """
-    Reads: el_nino_la_nina_1999_2019.csv
-    Returns: list[climateEvent]
-    """
+#Param Butani
+def loadClimateEvents(zip_path="archive.zip"):
     member = "el_nino_la_nina_1999_2019.csv"
     zf, reader = _open_csv_from_zip(zip_path, member)
-
     events = []
     try:
-        for row in reader:
-            start = int(row["start year"].strip())
-            end = int(row["end year"].strip())
-            event = row["phenomenon"].strip()
-            severity = row["severity"].strip()
-
+        for x in reader:
+            start = int(x["start year"].strip())
+            end = int(x["end year"].strip())
+            event = x["phenomenon"].strip()
+            severity = x["severity"].strip()
             events.append(climateEvent(start, end, event, severity))
         return events
     finally:
