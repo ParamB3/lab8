@@ -56,6 +56,11 @@ class TestDeforestationFunctions(unittest.TestCase):
         result = sustainabilityMessage(y)
         self.assertEqual(result, "Moderate deforestation level")
 
+    def test3SustainabilityMessage(self):
+        y = deforestationYear(2011, 0.0, 7000.0)
+        result = sustainabilityMessage(y)
+        self.assertEqual(result, "Moderate deforestation level")
+
 
 if __name__ == "__main__":
     unittest.main()
