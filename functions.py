@@ -1,7 +1,7 @@
 import data
 from classFile import deforestationYear
 from typing import List, Set
-
+from classFile import *
 def totalDeforestation(years:list[deforestationYear]) -> dict:
     total = {}
     for x in years:
@@ -51,7 +51,7 @@ def yearOverYearChange(years: list[deforestationYear],value: str = "amz") -> dic
 
     changes: dict[int, float] = {}
 
-    for i in range(1, len(sor)):
+    for i in range(1, len(sort)):
         previous = sort[i - 1]
         current = sort[i]
 
