@@ -77,6 +77,8 @@ def totalFiresByState(record: List[amazonFires]) -> dict[str, int]:
 
     return total
 
+#collects total fire spots per year from the records and returns a sorted list of
+#years where the total exceeds the given threshold.
 def find_years_with_total_above(records: List["amazonFires"], threshold: int) -> List[int]:
     totals_by_year: dict[int, int] = {}
 
@@ -93,7 +95,8 @@ def find_years_with_total_above(records: List["amazonFires"], threshold: int) ->
     years = [yr for yr, total in totals_by_year.items() if total > threshold]
     return sorted(years)
 
-
+#Returns a sorted list of unique state names whose fire records fall within
+#the specified latitude and longitude bounding box.
 def within_area(records: List["amazonFires"],long1: float,long2: float,lat1: float,lat2: float) -> List[str]:
     min_long, max_long = (long1, long2) if long1 <= long2 else (long2, long1)
     min_lat, max_lat = (lat1, lat2) if lat1 <= lat2 else (lat2, lat1)
@@ -116,6 +119,8 @@ def within_area(records: List["amazonFires"],long1: float,long2: float,lat1: flo
 
     return sorted(states_in_box)
 
+#Checks whether a given year falls within the event’s start and end range
+#returning False for invalid or missing values.
 def i_include_year(self, year: int) -> bool:
         if year is None:
             return False
@@ -126,6 +131,9 @@ def i_include_year(self, year: int) -> bool:
         if self.start is None or self.end is None:
             return False
         return int(self.start) <= y <= int(self.end)
+
+#Calculates the length of the event in years and
+#raises an error if the date range is invalid or incomplete.
 
 def duration(self, inclusive: bool = True) -> int:
         if self.start is None or self.end is None:
