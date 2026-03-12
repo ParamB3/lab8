@@ -2,15 +2,16 @@ import data
 from classFile import deforestationYear
 from typing import List, Set
 from classFile import *
+#find total deforestation
 def totalDeforestation(years:list[deforestationYear]) -> dict:
     total = {}
     for x in years:
         total[x.year] = x.amz
     return total
-
+#checks if deforestation is greater than a given value
 def isHighDeforestation(year:deforestationYear, x:int)->bool:
     return year.amz > x
-
+#compares deforestation of two years
 def compareYears(x:deforestationYear, y:deforestationYear)->str:
     difference = x.amz - y.amz
     if difference > 0:
@@ -19,7 +20,8 @@ def compareYears(x:deforestationYear, y:deforestationYear)->str:
         return f"Decrease of {abs(difference)} km^2"
     else:
         return "No change"
-
+#Mentions if deforestation is greater than 10,000 or 5,000 or less than 5,000 in a given year using
+#high, moderate, and low; respectively
 def sustainabilityMessage(year:deforestationYear)->str:
     if year.amz > 10000:
         return "High deforestation year"
@@ -27,7 +29,7 @@ def sustainabilityMessage(year:deforestationYear)->str:
         return "Moderate deforestation level"
     else:
         return "Low deforestation level"
-
+#asses the risk level of deforestation
 def riskLevel(years: list[deforestationYear]) -> dict[int, str]:
     levels: dict[int, str] = {}
     for y in years:
@@ -41,10 +43,10 @@ def riskLevel(years: list[deforestationYear]) -> dict[int, str]:
             levels[y.year] = "LOW"
 
     return levels
-
+#grabs the year of an object foe use in the function yearOverYearChange
 def getYear(obj: deforestationYear):
         return obj.year
-
+#finds the change of a given variable over the course of a set amount of years
 def yearOverYearChange(years: list[deforestationYear],value: str = "amz") -> dict[int, float]:
 
     sort = sorted(years, key=getYear)
@@ -61,7 +63,7 @@ def yearOverYearChange(years: list[deforestationYear],value: str = "amz") -> dic
         changes[current.year] = curr - prev
 
     return changes
-
+#finds the total fires of a state
 def totalFiresByState(record: List[amazonFires]) -> dict[str, int]:
 
     total: dict[str, int] = {}
